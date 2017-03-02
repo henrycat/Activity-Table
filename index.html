@@ -1,0 +1,68 @@
+
+<div class="container" ng-app="sortApp" ng-controller="mainController">
+  
+  <div class="alert alert-info">
+    <p>Sort Type: {{ sortType }}</p>
+    <p>Sort Reverse: {{ sortReverse }}</p>
+    <p>Search Query: {{ searchactivity }}</p>
+  </div>
+  
+  <form>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+        <input type="text" class="form-control" placeholder="Search Here" ng-model="searchactivity">
+      </div>      
+    </div>
+  </form>
+  
+  <table class="table table-bordered table-striped">
+    
+    <thead>
+      <tr>
+        <td>
+          <a ng-href="" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+            Events 
+            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>
+          <a ng-href="" ng-click="sortType = 'activity'; sortReverse = !sortReverse">
+          Activity Type
+            <span ng-show="sortType == 'activity' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'activity' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>
+          <a ng-href="" ng-click="sortType = 'activity'; sortReverse = !sortReverse">
+          Season
+            <span ng-show="sortType == 'activity' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'activity' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>
+          <a href="#" ng-click="sortType = 'activity'; sortReverse = !sortReverse">
+          User Rating 
+            <span ng-show="sortType == 'rating' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'rating' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr ng-repeat="activity in activities | orderBy:sortType:sortReverse | filter:searchactivity">
+        <td>{{ activity.name }}</td>
+        <td>{{ activity.activity }}</td>
+        <td>{{ activity.season }}</td>
+        <td>{{ activity.rating }}</td>
+      </tr>
+    </tbody>
+    
+  </table>
+  
+  
+  
+</div>
+
